@@ -9,18 +9,23 @@
 import Foundation
 
 class RainDrop: CCSprite {
-    weak var rainDrop: CCSprite!
+    func didLoadFromCCB(){
+        userInteractionEnabled = true
+    }
     
-    let carrotDistance : CGFloat = 142
-    
-    func setupRandomPosition() {
-        let randomPrecision : UInt32 = 100
-        let random = CGFloat(arc4random_uniform(randomPrecision)) / CGFloat(randomPrecision)
-        let range = rainDropMaximumPositionY - rainDropDistance - rainDropMinimumPositionY
-        rainDrop.position = ccp(rainDrop.position.x, rainDropMinimumPositionY + (random * range));
-        rainDrop.position = ccp(bottomCarrot.position.x, topCarrot.position.y + carrotDistance);
+    override func touchBegan(touch: CCTouch!, withEvent event: CCTouchEvent!) {
+        self.removeFromParent()
     }
 }
+//    let carrotDistance : CGFloat = 142
+//    
+//    func setupRandomPosition() {
+//        let randomPrecision : UInt32 = 100
+//        let random = CGFloat(arc4random_uniform(randomPrecision)) / CGFloat(randomPrecision)
+//        let range = rainDropMaximumPositionY - rainDropDistance - rainDropMinimumPositionY
+//        rainDrop.position = ccp(rainDrop.position.x, rainDropMinimumPositionY + (random * range));
+//        rainDrop.position = ccp(bottomCarrot.position.x, topCarrot.position.y + carrotDistance);
+//    }
 //    func didLoadFromCCB() {
 //        for i in 0..<10 {
 //            var piece = CCBReader.load("RainDrop") as! Piece

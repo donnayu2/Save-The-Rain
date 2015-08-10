@@ -52,7 +52,7 @@
 			<key>affectedByGravity</key>
 			<true/>
 			<key>allowsRotation</key>
-			<true/>
+			<false/>
 			<key>bodyShape</key>
 			<integer>0</integer>
 			<key>collisionCategories</key>
@@ -60,7 +60,7 @@
 			<key>collisionMask</key>
 			<array/>
 			<key>collisionType</key>
-			<string></string>
+			<string>raindrop</string>
 			<key>cornerRadius</key>
 			<real>0.0</real>
 			<key>density</key>
@@ -74,40 +74,88 @@
 			<key>points</key>
 			<array>
 				<array>
-					<real>0.0</real>
-					<real>0.0</real>
+					<real>20.80859375</real>
+					<real>1.79296875</real>
 				</array>
 				<array>
-					<real>0.0</real>
-					<real>234</real>
+					<real>10.37109375</real>
+					<real>16.09375</real>
 				</array>
 				<array>
-					<real>234</real>
-					<real>234</real>
+					<real>9.45703125</real>
+					<real>32.62109375</real>
 				</array>
 				<array>
-					<real>234</real>
-					<real>0.0</real>
+					<real>22.71875</real>
+					<real>54.43359375</real>
+				</array>
+				<array>
+					<real>34.57421875</real>
+					<real>72.98046875</real>
+				</array>
+				<array>
+					<real>50.390625</real>
+					<real>55.62109375</real>
+				</array>
+				<array>
+					<real>61.23828125</real>
+					<real>32.54296875</real>
+				</array>
+				<array>
+					<real>62.9375</real>
+					<real>16.59765625</real>
+				</array>
+				<array>
+					<real>54.23828125</real>
+					<real>4.1328125</real>
+				</array>
+				<array>
+					<real>40.23046875</real>
+					<real>-3.0703125</real>
 				</array>
 			</array>
 			<key>polygons</key>
 			<array>
 				<array>
 					<array>
-						<real>234</real>
-						<real>0.0</real>
+						<real>40.23046875</real>
+						<real>-3.0703125</real>
 					</array>
 					<array>
-						<real>234</real>
-						<real>234</real>
+						<real>54.23828125</real>
+						<real>4.1328125</real>
 					</array>
 					<array>
-						<real>0.0</real>
-						<real>234</real>
+						<real>62.9375</real>
+						<real>16.59765625</real>
 					</array>
 					<array>
-						<real>0.0</real>
-						<real>0.0</real>
+						<real>61.23828125</real>
+						<real>32.54296875</real>
+					</array>
+					<array>
+						<real>50.390625</real>
+						<real>55.62109375</real>
+					</array>
+					<array>
+						<real>34.57421875</real>
+						<real>72.98046875</real>
+					</array>
+					<array>
+						<real>22.71875</real>
+						<real>54.43359375</real>
+					</array>
+					<array>
+						<real>9.45703125</real>
+						<real>32.62109375</real>
+					</array>
+					<array>
+						<real>10.37109375</real>
+						<real>16.09375</real>
+					</array>
+					<array>
+						<real>20.80859375</real>
+						<real>1.79296875</real>
 					</array>
 				</array>
 			</array>
@@ -168,7 +216,7 @@
 				<key>value</key>
 				<array>
 					<string></string>
-					<string>ccbResources/raindropp.png</string>
+					<string>ccbResources/raindrop.png</string>
 				</array>
 			</dict>
 			<dict>
