@@ -9,7 +9,5 @@
 import Foundation
 
 class Bucket: CCSprite {
-    func didLoadFromCCB(){
-        self.physicsBody.sensor = true
-    }
+ 
 }

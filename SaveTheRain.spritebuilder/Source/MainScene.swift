@@ -2,24 +2,32 @@ import Foundation
 
 class MainScene: CCNode, CCPhysicsCollisionDelegate {
     
+    // VARIABLE LIST
     
-//    weak var bucket = CCSprite!
-    var isTouchingBucket = false
-    var gameOver = false
-    weak var sand: CCSprite!
-    weak var rainDrop: CCSprite!
-    weak var bucket: Bucket!
+    //talk about raindrops
     var rainDrops: [RainDrop] = []
+    weak var rainDrop: CCSprite!
+    var dropsCollected: Int = 0
     let firstRainDropPosition : CGFloat = 280
     let distanceBetweenRainDrops : CGFloat = 160
     
+    //talk about bucket
+    var isTouchingBucket = false
+    weak var bucket: Bucket!
+
+    //control gameplay
+    var gameOver = false
     var counter = 0
-    var dropsCollected: Int = 0
-    
     weak var gamePhysicsNode: CCPhysicsNode!
+    
+    
+    // FUNCTIONS
     
     //RUNS AT BEGINNING OF PROGRAM
     func didLoadFromCCB() {
+        
+        gamePhysicsNode.debugDraw = false
+        
         userInteractionEnabled = true
         gamePhysicsNode.collisionDelegate = self
         
@@ -83,6 +91,10 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
             
             if counter % 30 == 0 {
                 spawnNewRainDrop()
+            }
+            
+            if rainDrops.count > 1 {
+                rainDrops.removeLast()
             }
         }
     }

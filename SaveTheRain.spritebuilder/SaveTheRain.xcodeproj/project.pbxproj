@@ -438,11 +438,11 @@
 		B737893C1807616C0076A88C /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				7A40362019DDEF0D007B6E8F /* Platforms */,
 				7A046D7519E84C36004C4763 /* MainScene.swift */,
-				D352B48019EC608A00829775 /* MetalShaders */,
 				4566B3941B73B09B006E650C /* Bucket.swift */,
 				4566B39A1B73B0AF006E650C /* RainDrop.swift */,
+				7A40362019DDEF0D007B6E8F /* Platforms */,
+				D352B48019EC608A00829775 /* MetalShaders */,
 			);
 			name = Source;
 			sourceTree = "<group>";
