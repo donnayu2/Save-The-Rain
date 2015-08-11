@@ -5,18 +5,29 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
     // VARIABLE LIST
     
     //talk about raindrops
-    var rainDrops: [RainDrop] = []
+    let screenSize: CGRect = UIScreen.mainScreen().bounds
+    var rainDrops: [CCSprite] = []
     weak var rainDrop: CCSprite!
     weak var sand: CCSprite!
-
-    var dropsCollected: Int = 0
+    var interval: Double = 0
+    var dropsCollected: Int = 0 {
+        didSet{
+            if dropsCollected % 10 == 0 && dropsCollected > 0 {
+                unschedule("spawnNewRainDrop")
+                if interval > 0.25 {
+                    interval -= interval/20
+                }
+                schedule("spawnNewRainDrop", interval: interval)
+            }
+        }
+    }
     let firstRainDropPosition : CGFloat = 280
     let distanceBetweenRainDrops : CGFloat = 160
     
     //talk about bucket
     var isTouchingBucket = false
     weak var bucket: Bucket!
-
+    
     //control gameplay
     var gameOver = false
     var counter = 0
@@ -28,22 +39,28 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
     // FUNCTIONS
     
     //RUNS AT BEGINNING OF PROGRAM
+    
     func didLoadFromCCB() {
-        
-        gamePhysicsNode.debugDraw = false
-        
+        println("Jorrie the tallest")
+        interval = 1
+        gamePhysicsNode.debugDraw = true
         userInteractionEnabled = true
         gamePhysicsNode.collisionDelegate = self
         
         spawnNewRainDrop()
     }
+    override func onEnter() {
+        super.onEnter()
+        println(interval)
+        schedule("spawnNewRainDrop", interval: interval)
+    }
     
-//    // TRIGGERS GAME OVER
-//    func triggerGameOver() {
-//        if (gameOver == true) {
-//            println("Todo: gameover")
-//        }
-//    }
+    //    // TRIGGERS GAME OVER
+    //    func triggerGameOver() {
+    //        if (gameOver == true) {
+    //            println("Todo: gameover")
+    //        }
+    //    }
     
     //CALLED WHEN YOU TOUCH THE SCREEN
     override func touchBegan(touch: CCTouch!, withEvent event: CCTouchEvent!) {
@@ -52,7 +69,7 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
         if (gameOver == false) {
             bucket.physicsBody.applyImpulse(ccp(0, 400))
             bucket.physicsBody.applyAngularImpulse(10000)
-//            sinceTouch = 0
+            //            sinceTouch = 0
         }
     }
     
@@ -71,8 +88,10 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
         
         let rainDrop = CCBReader.load("RainDrop") as! RainDrop
         
-        rainDrop.position = CGPoint(x: CCDirector.sharedDirector().viewSize().width * CGFloat(CCRANDOM_0_1()), y: CCDirector.sharedDirector().viewSize().height) //y value of screen
-        
+        var randomXPosition = CGFloat (arc4random_uniform(UInt32(screenSize.width - CGFloat(rainDrop.scale) * rainDrop.contentSize.width * 2)))
+        rainDrop.position = ccp ( randomXPosition + CGFloat(rainDrop.scale) * rainDrop.contentSize.width, UIScreen.mainScreen().bounds.height-20)
+        //        rainDrop.position = CGPoint(x: CCDirector.sharedDirector().viewSize().width * CGFloat(CCRANDOM_0_1()), y: CCDirector.sharedDirector().viewSize().height) //y value of screen
+        //
         gamePhysicsNode.addChild(rainDrop)
         rainDrops.append(rainDrop)
         
@@ -82,28 +101,23 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
     
     
     override func update (delta: CCTime){
-        counter++
-        
-        for rainDrop in rainDrops.reverse() {
-            let rainDropWorldPosition = gamePhysicsNode.convertToWorldSpace(rainDrop.position)
-            let rainDropScreenPosition = convertToNodeSpace(rainDropWorldPosition)
-            
-            // obstacle moved past bottom of screen?
-            if rainDropScreenPosition.y < 0 {
-               
-                rainDrop.removeFromParent()
-                rainDrops.removeAtIndex(find(rainDrops, rainDrop)!)
+        if gameOver == false {
+            for rainDrop in rainDrops.reverse() {
+                let rainDropWorldPosition = gamePhysicsNode.convertToWorldSpace(rainDrop.position)
+                let rainDropScreenPosition = convertToNodeSpace(rainDropWorldPosition)
                 
-                // for each removed obstacle, add a new one
-                spawnNewRainDrop()
-            }
-            
-            if counter % 30 == 0 {
-                spawnNewRainDrop()
-            }
-            
-            if rainDrops.count > 1 {
-                rainDrops.removeLast()
+                // obstacle moved past bottom of screen?
+                if rainDropScreenPosition.y < 0 {
+                    
+                    rainDrop.removeFromParent()
+                    rainDrops.removeAtIndex(find(rainDrops, rainDrop)!)
+                    
+                    // for each removed obstacle, add a new one
+                    spawnNewRainDrop()
+                }
+                if rainDrops.count > 1 {
+                    //rainDrops.removeLast()
+                }
             }
         }
     }
@@ -111,7 +125,7 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
     
     //COLLISION TESTING
     func ccPhysicsCollisionBegin(pair: CCPhysicsCollisionPair!, bucket: Bucket!, raindrop: RainDrop!) -> Bool {
-        if raindrop != nil { raindrop.removeFromParent() }
+        raindrop.removeFromParent()
         dropsCollected++
         scoreLabel.string = String(dropsCollected)
         return false
@@ -133,11 +147,15 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
         if (gameOver == false) {
             gameOver = true
             restartButton.visible = true
-//            rainDrop = 0
+            for raindrop in rainDrops {
+                raindrop.removeFromParent()
+            }
+            unschedule("spawnRainDrop")
+            unschedule("spawnNewRainDrop")
             isTouchingBucket = false
             
             // just in case
-//            rainDrop.stopAllActions()
+            //            rainDrop.stopAllActions()
             
             let move = CCActionEaseBounceOut(action: CCActionMoveBy(duration: 0.2, position: ccp(0, 4)))
             let moveBack = CCActionEaseBounceOut(action: move.reverse())
