@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		4566B3951B73B09B006E650C /* Bucket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4566B3941B73B09B006E650C /* Bucket.swift */; };
 		4566B39B1B73B0AF006E650C /* RainDrop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4566B39A1B73B0AF006E650C /* RainDrop.swift */; };
+		458781E61B7CFFDD008E58B4 /* Geo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458781E51B7CFFDD008E58B4 /* Geo.swift */; };
+		458781EA1B7CFFFE008E58B4 /* eColi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458781E91B7CFFFE008E58B4 /* eColi.swift */; };
+		458781F01B7D3CA9008E58B4 /* iAdHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458781EF1B7D3CA9008E58B4 /* iAdHandler.swift */; };
 		5B121030197484FA004C1E1D /* SaveTheRainActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B12102F197484FA004C1E1D /* SaveTheRainActivity.m */; };
 		5B121038197487F2004C1E1D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B737893E1807617C0076A88C /* AppDelegate.m */; };
 		7A046D7919E84ED5004C4763 /* MainScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A046D7519E84C36004C4763 /* MainScene.swift */; };
@@ -152,6 +155,9 @@
 /* Begin PBXFileReference section */
 		4566B3941B73B09B006E650C /* Bucket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bucket.swift; sourceTree = "<group>"; };
 		4566B39A1B73B0AF006E650C /* RainDrop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RainDrop.swift; sourceTree = "<group>"; };
+		458781E51B7CFFDD008E58B4 /* Geo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Geo.swift; sourceTree = "<group>"; };
+		458781E91B7CFFFE008E58B4 /* eColi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = eColi.swift; sourceTree = "<group>"; };
+		458781EF1B7D3CA9008E58B4 /* iAdHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iAdHandler.swift; sourceTree = "<group>"; };
 		5B12100919748273004C1E1D /* libEGL.so */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libEGL.so; path = /usr/lib/armv7a/libEGL.so; sourceTree = SDKROOT; };
 		5B12100F197483EE004C1E1D /* ic_launcher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_launcher.png; sourceTree = "<group>"; };
 		5B121011197483EE004C1E1D /* ic_launcher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_launcher.png; sourceTree = "<group>"; };
@@ -439,6 +445,9 @@
 			isa = PBXGroup;
 			children = (
 				7A046D7519E84C36004C4763 /* MainScene.swift */,
+				458781EF1B7D3CA9008E58B4 /* iAdHandler.swift */,
+				458781E51B7CFFDD008E58B4 /* Geo.swift */,
+				458781E91B7CFFFE008E58B4 /* eColi.swift */,
 				4566B3941B73B09B006E650C /* Bucket.swift */,
 				4566B39A1B73B0AF006E650C /* RainDrop.swift */,
 				7A40362019DDEF0D007B6E8F /* Platforms */,
@@ -615,6 +624,7 @@
 						CreatedOnToolsVersion = 6.0.1;
 					};
 					B77F1B2D17B978D7009739AE = {
+						DevelopmentTeam = T2N6A9V9LW;
 						SystemCapabilities = {
 							com.apple.GameCenter = {
 								enabled = 0;
@@ -818,9 +828,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				458781EA1B7CFFFE008E58B4 /* eColi.swift in Sources */,
 				B73789871807631A0076A88C /* main.m in Sources */,
+				458781E61B7CFFDD008E58B4 /* Geo.swift in Sources */,
 				4566B39B1B73B0AF006E650C /* RainDrop.swift in Sources */,
 				4566B3951B73B09B006E650C /* Bucket.swift in Sources */,
+				458781F01B7D3CA9008E58B4 /* iAdHandler.swift in Sources */,
 				7A046D7919E84ED5004C4763 /* MainScene.swift in Sources */,
 				5B121038197487F2004C1E1D /* AppDelegate.m in Sources */,
 			);
