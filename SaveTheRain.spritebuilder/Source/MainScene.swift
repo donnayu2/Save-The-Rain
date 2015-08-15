@@ -57,6 +57,16 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
     
     //RUNS AT BEGINNING OF PROGRAM
     
+    override func onEnter() {
+        super.onEnter()
+        println(interval)
+        schedule("spawnNewRainDrop", interval: interval)
+        
+        iAdHandler.sharedInstance.loadAds(bannerPosition: .Top)
+        iAdHandler.sharedInstance.setBannerPosition(bannerPosition: .Top)
+        iAdHandler.sharedInstance.displayBannerAd()
+    }
+    
     func didLoadFromCCB() {
         interval = 1
 //        gamePhysicsNode.debugDraw = true
@@ -65,13 +75,9 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
         spawnNewGeo()
         spawnNewRainDrop()
         
+
+        
     }
-    override func onEnter() {
-        super.onEnter()
-        println(interval)
-        schedule("spawnNewRainDrop", interval: interval)
-    }
-    
     
     //CALLED WHEN YOU TOUCH THE SCREEN
     override func touchBegan(touch: CCTouch!, withEvent event: CCTouchEvent!) {

@@ -14,7 +14,7 @@
 	<key>centeredOrigin</key>
 	<false/>
 	<key>currentResolution</key>
-	<integer>0</integer>
+	<integer>2</integer>
 	<key>currentSequenceId</key>
 	<integer>0</integer>
 	<key>docDimensionsType</key>
@@ -188,8 +188,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>0.20000000298023224</real>
-							<real>0.20000000298023224</real>
+							<real>0.13550050556659698</real>
+							<real>0.29782190918922424</real>
 							<integer>1</integer>
 							<integer>2</integer>
 							<integer>2</integer>
@@ -652,8 +652,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>0.28488501906394958</real>
-							<real>0.25847914814949036</real>
+							<real>0.19641628861427307</real>
+							<real>0.28386414051055908</real>
 							<integer>2</integer>
 							<integer>2</integer>
 							<integer>2</integer>
@@ -769,7 +769,7 @@
 						<key>value</key>
 						<array>
 							<real>0.50731897354125977</real>
-							<real>-0.067885518074035645</real>
+							<real>0.020070465281605721</real>
 							<integer>1</integer>
 							<integer>2</integer>
 							<integer>2</integer>
@@ -876,8 +876,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>0.34999999403953552</real>
-							<real>0.34999999403953552</real>
+							<real>0.32929617166519165</real>
+							<real>0.40599694848060608</real>
 							<integer>1</integer>
 							<integer>2</integer>
 							<integer>2</integer>
@@ -992,8 +992,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>0.36301618814468384</real>
-							<real>0.39662772417068481</real>
+							<real>0.2900083065032959</real>
+							<real>0.43351197242736816</real>
 							<integer>2</integer>
 							<integer>2</integer>
 							<integer>2</integer>
@@ -1713,7 +1713,7 @@
 								<key>value</key>
 								<array>
 									<real>0.5</real>
-									<real>0.10000000149011612</real>
+									<real>0.22232958674430847</real>
 									<integer>1</integer>
 									<integer>2</integer>
 									<integer>2</integer>
@@ -4713,8 +4713,6 @@ giardiasis.
 						<real>1</real>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 				<key>seqExpanded</key>
 				<true/>
 			</dict>
