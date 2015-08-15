@@ -52,7 +52,7 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
     weak var restartButton : CCButton!
     weak var deleteButton : CCButton!
     weak var highScoreLabel: CCLabelTTF!
-    
+    weak var touchedBug: CCNodeColor!
     // FUNCTIONS
     
     //RUNS AT BEGINNING OF PROGRAM
@@ -64,6 +64,7 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
         gamePhysicsNode.collisionDelegate = self
         spawnNewGeo()
         spawnNewRainDrop()
+        
     }
     override func onEnter() {
         super.onEnter()
@@ -74,20 +75,23 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
     
     //CALLED WHEN YOU TOUCH THE SCREEN
     override func touchBegan(touch: CCTouch!, withEvent event: CCTouchEvent!) {
-        var touchLocation = touch.locationInWorld()
-        bucket.position.x = touchLocation.x
-        if (gameOver == false) {
-            bucket.physicsBody.applyImpulse(ccp(0, 400))
-            bucket.physicsBody.applyAngularImpulse(10000)
-            //            sinceTouch = 0
-        }
+//        var touchLocation = touch.locationInWorld()
+//        bucket.position.x = touchLocation.x
+//        if (gameOver == false) {
+//            bucket.physicsBody.applyImpulse(ccp(0, 400))
+//            bucket.physicsBody.applyAngularImpulse(10000)
+//            //            sinceTouch = 0
+//        }
     }
     
     //CALLED WHEN YOU DRAG YOUR FINGER ON THE SCREEN
     override func touchMoved(touch: CCTouch!, withEvent event: CCTouchEvent!) {
-        var touchLocation = touch.locationInWorld()
-        bucket.position.x = touchLocation.x
-        
+//        
+//        println("bucket \(bucket.position)")
+//        println("touch \(touch.locationInWorld().x) ")
+        if !gameOver {
+            bucket.position.x = touch.locationInWorld().x
+        }
     }
     
     //SPAWNS A NEW RAINDROP AT A RANDOM POSITION
@@ -101,7 +105,7 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
         //
         gamePhysicsNode.addChild(rainDrop)
         rainDrops.append(rainDrop)
-        println(rainDrop.position)
+//        println(rainDrop.position)
 
     }
     
@@ -149,6 +153,11 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
         }
     }
     
+    func resume () {
+        CCDirector.sharedDirector().resume()
+        var action = CCActionMoveTo(duration: 1.0, position: CGPoint(x: 1000.0, y: 500.0))
+        touchedBug.runAction(action)
+    }
     
     //COLLISION TESTING
     func ccPhysicsCollisionBegin(pair: CCPhysicsCollisionPair!, bucket: Bucket!, raindrop: RainDrop!) -> ObjCBool {
@@ -173,9 +182,13 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
     func ccPhysicsCollisionBegin(pair: CCPhysicsCollisionPair!, bucket: Bucket!, geo: Geo!) -> ObjCBool {
         geo.removeFromParent()
         self.animationManager.runAnimationsForSequenceNamed("hitBug")
-        unschedule("spawnNewRainDrop")
-        isTouchingBucket = false
+        scheduleOnce("pause", delay: 1.0)
+
         return true
+    }
+    
+    func pause () {
+        CCDirector.sharedDirector().pause()
     }
     
     func restart() {
@@ -196,23 +209,16 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
 
             highScoreLabel.string = String(highscore)
             if dropsCollected > highscore {
-  
                 
                 println(highscore)
                 defaults.setInteger(dropsCollected, forKey: "highScoreLabel")
                 highScoreLabel.string = String(dropsCollected)
                 
-
             }
-
             
             self.animationManager.runAnimationsForSequenceNamed("GameOver")
             unschedule("spawnNewRainDrop")
             isTouchingBucket = false
-            
-            // just in case
-            // rainDrop.stopAllActions()
-            
             let move = CCActionEaseBounceOut(action: CCActionMoveBy(duration: 0.2, position: ccp(0, 4)))
             let moveBack = CCActionEaseBounceOut(action: move.reverse())
             let shakeSequence = CCActionSequence(array: [move, moveBack])
